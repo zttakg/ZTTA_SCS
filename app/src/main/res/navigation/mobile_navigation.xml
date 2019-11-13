@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="xyz.yaroslav.scs.ui.home.HomeFragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/nav_history"
+        android:name="xyz.yaroslav.scs.ui.history.HistoryFragment"
+        android:label="@string/menu_history"
+        tools:layout="@layout/fragment_history" />
+
+    <fragment
+        android:id="@+id/nav_whitelist"
+        android:name="xyz.yaroslav.scs.ui.whitelist.WhitelistFragment"
+        android:label="@string/menu_whitelist"
+        tools:layout="@layout/fragment_whitelist" />
+
+    <fragment
+        android:id="@+id/nav_unsent"
+        android:name="xyz.yaroslav.scs.ui.unsent.UnsentFragment"
+        android:label="@string/menu_unsent"
+        tools:layout="@layout/fragment_unsent" />
+
+    <fragment
+        android:id="@+id/nav_settings"
+        android:name="xyz.yaroslav.scs.ui.preferences.CustomPreferences"
+        android:label="@string/menu_network"
+        tools:layout="@xml/fragment_preferences"/>
+
+</navigation>

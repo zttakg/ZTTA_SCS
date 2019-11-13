@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory
+        android:title="@string/label_personal_settings">
+
+        <EditTextPreference
+            android:key="branch_name_key"
+            android:title="@string/label_branch_name"
+            android:icon="@drawable/ic_domain"
+            android:summary="@string/summary_branch_name"
+            android:defaultValue="@string/pref_value_branch_name"/>
+
+        <EditTextPreference
+            android:key="branch_phone_key"
+            android:title="@string/label_responsible_phone"
+            android:icon="@drawable/ic_phone"
+            android:summary="@string/summary_responsible_phone"
+            android:defaultValue="@string/pref_value_branch_phone"/>
+
+        <Preference
+            android:key="branch_id_key"
+            android:title="Branch ID"
+            android:summary="Selected branch unique id"
+            android:defaultValue="-1"/>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="@string/label_network_settings">
+
+        <EditTextPreference
+            android:key="network_protocol_key"
+            android:title="@string/label_protocol"
+            android:summary="@string/summary_protocol"
+            android:defaultValue="@string/pref_value_net_protocol"/>
+
+        <EditTextPreference
+            android:key="network_address_key"
+            android:title="@string/label_address"
+            android:summary="@string/summary_address"
+            android:defaultValue="@string/pref_value_net_address"/>
+
+        <EditTextPreference
+            android:key="network_port_key"
+            android:title="@string/label_port"
+            android:summary="@string/summary_port"
+            android:defaultValue="@string/pref_value_net_port"/>
+
+        <EditTextPreference
+            android:key="network_whitelist_key"
+            android:title="@string/label_whitelist"
+            android:summary="@string/summary_whitelist"
+            android:defaultValue="@string/pref_value_net_whitelist"/>
+
+        <EditTextPreference
+            android:key="network_new_tag_key"
+            android:title="@string/label_new_tag"
+            android:summary="@string/summary_post_new"
+            android:defaultValue="@string/pref_value_net_add_new"/>
+
+        <EditTextPreference
+            android:key="network_history_key"
+            android:title="@string/label_get_history"
+            android:summary="@string/summary_get_history"
+            android:defaultValue="@string/pref_value_net_history"/>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="@string/label_other_settings">
+
+        <Preference
+            android:key="delete_history_key"
+            android:title="@string/menu_delete_history"
+            android:icon="@drawable/ic_delete"
+            android:summary="@string/summary_delete_history" />
+
+        <Preference
+            android:key="delete_cache_key"
+            android:title="@string/menu_delete_cache"
+            android:icon="@drawable/ic_delete"
+            android:summary="@string/summary_delete_cache" />
+
+    </PreferenceCategory>
+</PreferenceScreen>

@@ -1,0 +1,116 @@
+<resources>
+    <string name="app_name">Security Control System</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">ZTTA</string>
+    <string name="nav_header_subtitle">temirtulpar@temirtulpar.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+    <string name="splash_screen_logo">Temir Tulpar Asia Factory</string>
+
+    <string name="branch_zavod">ZTTA</string>
+    <string name="branch_tires">Tire Company</string>
+    <string name="branch_pm">First Metallbase</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_history">History</string>
+    <string name="menu_whitelist">Acceptable tags</string>
+    <string name="menu_unsent">Unsent tags</string>
+    <string name="menu_network">Settings</string>
+    <string name="menu_branch">Select branch</string>
+
+    <string name="label_nfc">NFC</string>
+    <string name="label_wifi">Wi-Fi</string>
+    <string name="label_default_suggest">Touch NFC tag to read it</string>
+
+    <string name="label_info">Information</string>
+    <string name="label_error">Error</string>
+    <string name="label_warning">Warning</string>
+    <string name="label_success">Success!</string>
+    <string name="label_fail">Fail!</string>
+    <string name="label_default">Touch NFC tag to read it</string>
+    <string name="label_tag">Tag</string>
+    <string name="label_compare_error">Unable to compare</string>
+    <string name="label_unknown_tag">Unknown tag</string>
+    <string name="label_url_error">Empty URL</string>
+
+    <string name="label_date_range">Set date range</string>
+    <string name="label_ok">OK</string>
+    <string name="label_cancel">Cancel</string>
+    <string name="hint_begin">Begin</string>
+    <string name="hint_end">End</string>
+
+    <string name="message_warning_delete_history">This action will delete local file with scanned tags for a day. Proceed?</string>
+    <string name="message_warning_delete_temp">This action will delete local file with unsent tags saved offline. Proceed?</string>
+    <string name="message_warning_delete_file">This action will delete local file. Proceed?</string>
+    <string name="message_empty_branch">No branch selected. To continue working with app you need select branch.</string>
+    <string name="message_url_error">URL is null. Check preferences, especially branch id.</string>
+
+    <string name="label_network_settings">Network settings</string>
+    <string name="label_protocol">Protocol</string>
+    <string name="label_address">Address</string>
+    <string name="label_port">Port</string>
+    <string name="label_whitelist">Get list of acceptable tags</string>
+    <string name="label_new_tag">Post new tag</string>
+    <string name="label_get_history">Get saved tags</string>
+    <string name="label_other_settings">Other settings</string>
+    <string name="menu_delete_cache">Delete cache file</string>
+    <string name="menu_delete_history">Delete history file</string>
+    <string name="label_delete_network">Delete network settings</string>
+    <string name="label_personal_settings">Personal information</string>
+    <string name="label_responsible_phone">Work phone number</string>
+    <string name="label_branch_name">Branch name</string>
+
+    <string name="summary_protocol">Protocol to transfer data between server and this device</string>
+    <string name="summary_address">IP or literal address of server </string>
+    <string name="summary_port">Port of server reserved for this application</string>
+    <string name="summary_whitelist">Postfix to get list of acceptable tags</string>
+    <string name="summary_get_history">Postfix to get saved tags from server</string>
+    <string name="summary_post_new">Postfix to post new tags to server</string>
+    <string name="summary_delete_cache">Delete file with unsent tags</string>
+    <string name="summary_delete_history">Delete file with local saved tags</string>
+    <string name="summary_delete_network">Delete file with network settings</string>
+    <string name="summary_branch_name">Displayed name of organization</string>
+    <string name="summary_responsible_phone">Displayed phone number of responsible person</string>
+
+    <string name="pref_key_branch_name">branch_name_key</string>
+    <string name="pref_key_branch_phone">branch_phone_key</string>
+    <string name="pref_key_branch_id">branch_id_key</string>
+    <string name="pref_key_net_protocol">network_protocol_key</string>
+    <string name="pref_key_net_address">network_address_key</string>
+    <string name="pref_key_net_port">network_port_key</string>
+    <string name="pref_key_net_whitelist">network_whitelist_key</string>
+    <string name="pref_key_net_add_new">network_new_tag_key</string>
+    <string name="pref_key_net_history">network_history_key</string>
+    <string name="pref_key_delete_history">delete_history_key</string>
+    <string name="pref_key_delete_cache">delete_cache_key</string>
+
+    <string name="pref_value_branch_name">ZTTA</string>
+    <string name="pref_value_branch_phone">+996(559)006018</string>
+    <string name="pref_value_net_protocol">http</string>
+    <string name="pref_value_net_address">points.temirtulpar.com</string>
+    <string name="pref_value_net_port">80</string>
+    <string name="pref_value_net_whitelist">app/add</string>
+    <string name="pref_value_net_add_new">app/tags?br=</string>
+    <string name="pref_value_net_history">app/events?st=&amp;et=&amp;br=</string>
+
+    <string name="file_whitelist">whitelist.txt</string>
+    <string name="file_history">history.txt</string>
+    <string name="file_cache">temp.txt</string>
+
+    <string name="text_login_message">To continue you should select branch of organization where this application will be use and input passkey for selected branch to approve that you are not a dick from mountain</string>
+
+    <string name="message_success">Tag was scanned successfully</string>
+    <string name="message_fail">Tag processing failed. Try again or skip</string>
+    <string name="message_error">Some errors occurred. Restart application, check wi-fi connection and try again</string>
+    <string name="message_white_list">Unable to check tag with white-listed. Check network connection and reload the application</string>
+    <string name="message_unknown_tag">Scanned tag does not valid</string>
+    <string name="toast_msg_empty_history">History file is empty or does not exist</string>
+    <string name="toast_msg_empty_temp">Temporary file is empty or does not exist</string>
+    <string name="toast_msg_empty_whitelist">Whitelist file is empty or does not exist</string>
+    <string name="toast_msg_empty_response">Unable to load history</string>
+    <string name="toast_empty_fields">Empty fields are not allowed</string>
+    <string name="toast_empty_branch">Branch is empty! Restart app and try again</string>
+    <string name="toast_current_branch">Current branch is: </string>
+
+</resources>
