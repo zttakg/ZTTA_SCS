@@ -17,36 +17,38 @@ public class CustomPreferences extends PreferenceFragmentCompat {
     Preference branchId;
     Preference deleteCache;
     Preference deleteHistory;
+    Preference deleteWhitelist;
 
-    Preference branchName;
     Preference branchPhone;
 
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
         addPreferencesFromResource(R.xml.fragment_preferences);
 
-        branchId = findPreference("branch_id_key");
+        branchId = findPreference(getString(R.string.pref_key_branch_id));
         branchId.setOnPreferenceClickListener(preference -> {
-            int value = branchId.getSharedPreferences().getInt("branch_id_key", -1);
+            int value = branchId.getSharedPreferences().getInt(getString(R.string.pref_key_branch_id), -1);
             showBranchById(value);
             return true;
         });
-
-        //branchName = findPreference(getString(R.string.pref_key_branch_name));
-        //branchName.setOnPreferenceClickListener(preference -> {
-        //});
 
         branchPhone = findPreference(getString(R.string.pref_key_branch_phone));
 
         deleteHistory = findPreference(getString(R.string.pref_key_delete_history));
         deleteHistory.setOnPreferenceClickListener(preference -> {
-            warningDialog(1);
+            warningDialog(getString(R.string.file_history),1);
             return true;
         });
 
         deleteCache = findPreference(getString(R.string.pref_key_delete_cache));
         deleteCache.setOnPreferenceClickListener(preference -> {
-            warningDialog(2);
+            warningDialog(getString(R.string.file_cache), 2);
+            return true;
+        });
+
+        deleteWhitelist = findPreference(getString(R.string.pref_key_delete_whitelist));
+        deleteWhitelist.setOnPreferenceClickListener(preference -> {
+            warningDialog(getString(R.string.file_whitelist), 3);
             return true;
         });
     }
@@ -72,19 +74,21 @@ public class CustomPreferences extends PreferenceFragmentCompat {
         }
     }
 
-    private void warningDialog(/*String file_name,*/ Integer type) {
+    private void warningDialog(String file_name, Integer type) {
         AlertDialog.Builder builder = new AlertDialog.Builder(Objects.requireNonNull(getActivity()));
         builder.setTitle(getString(R.string.label_warning));
         if (type == 1) {
             builder.setMessage(getString(R.string.message_warning_delete_history));
         } else if (type == 2) {
             builder.setMessage(getString(R.string.message_warning_delete_temp));
+        } else if (type == 3){
+            builder.setMessage(getString(R.string.message_warning_delete_whitelist));
         } else {
             builder.setMessage(getString(R.string.message_warning_delete_file));
         }
         builder.setIcon(R.drawable.ic_warning);
         builder.setPositiveButton(getString(R.string.label_ok), (dialog, which) -> {
-            //Objects.requireNonNull(getContext()).deleteFile(file_name);
+            Objects.requireNonNull(getContext()).deleteFile(file_name);
             dialog.dismiss();
             Toast.makeText(getContext(), "File deleted", Toast.LENGTH_SHORT).show();
         });

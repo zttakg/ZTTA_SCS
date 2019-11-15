@@ -33,7 +33,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedWriter;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
@@ -109,7 +111,6 @@ public class HomeFragment extends Fragment {
                     if (compareTag(tag_id, tag_data)) {
                         flag_name.put(1, tag_data);
                         saveInLocalFile(tag_id, tag_data, String.valueOf(cur_time));
-                        //new SendTagToServerAsync().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, buildUrl(postfix_new), tag_id, tag_data, String.valueOf(cur_time));
                         String url = buildUrl();
                         if (url != null) {
                             sendTagsToServer(buildUrl(), tag_id, tag_data, String.valueOf(cur_time));
@@ -130,13 +131,17 @@ public class HomeFragment extends Fragment {
         @Override
         protected void onPostExecute(Map pair) {
             if (pair.containsKey(1)) {
-                autoCloseDialog(pair.get(1).toString(), getString(R.string.message_success), 1);
+                new Utilities().autoCloseDialog(getContext(), pair.get(1).toString(), getString(R.string.message_success), 1);
+                //autoCloseDialog(pair.get(1).toString(), getString(R.string.message_success), 1);
             } else if (pair.containsKey(2)) {
-                autoCloseDialog(getString(R.string.label_unknown_tag), getString(R.string.message_unknown_tag), 3);
+                new Utilities().autoCloseDialog(getContext(), getString(R.string.label_unknown_tag), getString(R.string.message_unknown_tag), 3);
+                //autoCloseDialog(getString(R.string.label_unknown_tag), getString(R.string.message_unknown_tag), 3);
             } else if (pair.containsKey(3)) {
-                autoCloseDialog(getString(R.string.label_compare_error), getString(R.string.message_white_list), 2);
+                new Utilities().autoCloseDialog(getContext(), getString(R.string.label_compare_error), getString(R.string.message_white_list), 2);
+                //autoCloseDialog(getString(R.string.label_compare_error), getString(R.string.message_white_list), 2);
             } else {
-                autoCloseDialog(getString(R.string.label_error), getString(R.string.message_fail), 2);
+                new Utilities().autoCloseDialog(getContext(), getString(R.string.label_error), getString(R.string.message_fail), 2);
+                //autoCloseDialog(getString(R.string.label_error), getString(R.string.message_fail), 2);
             }
         }
     }
@@ -222,88 +227,6 @@ public class HomeFragment extends Fragment {
                 Log.e("WHITE_LIST", "JSON Parse Exception: " + e.getMessage());
             }
         }, 1000);
-
-        /*
-        try {
-            JSONObject jsonObject0 = new JSONObject();
-            JSONObject jsonObject1 = new JSONObject();
-            JSONObject jsonObject2 = new JSONObject();
-            JSONObject jsonObject3 = new JSONObject();
-            JSONObject jsonObject4 = new JSONObject();
-            jsonObject0.put("tag_id", "6294DA44");
-            jsonObject0.put("tag_data", "Test");
-            jsonObject1.put("tag_id", "04B69BA2E74C80");
-            jsonObject1.put("tag_data", "Домик");
-            jsonObject2.put("tag_id", "04EE9CA2E74C80");
-            jsonObject2.put("tag_data", "Столовая Север");
-            jsonObject3.put("tag_id", "04A899A2E74C80");
-            jsonObject3.put("tag_data", "ДСМ Восток");
-            jsonObject4.put("tag_id", "04D59CA2E74C80");
-            jsonObject4.put("tag_data", "Цех 3");
-            jsonArray.put(jsonObject0);
-            jsonArray.put(jsonObject1);
-            jsonArray.put(jsonObject2);
-            jsonArray.put(jsonObject3);
-            jsonArray.put(jsonObject4);
-        } catch (JSONException e) {
-            Log.e("BUILD_JSON", "JSON Exception: " + e.getMessage());
-        }
-
-        for (int i = 0; i < jsonArray.length(); i++) {
-            String tagName;
-            String tagUid ;
-            try {
-                JSONObject nestedObject = jsonArray.getJSONObject(i);
-                tagName = nestedObject.getString("tag_data");
-                tagUid = nestedObject.getString("tag_id");
-
-                Map<String,Object> tagItem = new TagItem(tagUid, tagName).toWhiteListMap();
-                Log.i("CURRENT_TAG", tagName + " : " + tagUid);
-                white_list.add(tagItem);
-            } catch (JSONException e) {
-                Log.e("WHITE_LIST", "JSON Exception: " + e.getMessage());
-            }
-        }
-
-        if (white_list.size() > 0) {
-            isWhiteListExists = true;
-        }
-        */
-    }
-
-    private void autoCloseDialog(String title, String message, int iconType) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-        builder.setTitle(title);
-        builder.setMessage(message);
-        switch (iconType) {
-            case 1:
-                builder.setIcon(R.drawable.ic_success);
-                break;
-            case 2:
-                builder.setIcon(R.drawable.ic_error);
-                break;
-            case 3:
-                builder.setIcon(R.drawable.ic_warning);
-                break;
-            case 4:
-                builder.setIcon(R.drawable.ic_info);
-                break;
-        }
-        builder.setCancelable(true);
-
-        final AlertDialog closedialog = builder.create();
-
-        closedialog.show();
-
-        final Timer timer = new Timer();
-        timer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                closedialog.dismiss();
-                timer.cancel();
-            }
-        }, 2000);
-
     }
 
     private void saveInLocalFile(String uid, String payload, String time) {

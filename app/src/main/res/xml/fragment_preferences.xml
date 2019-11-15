@@ -81,5 +81,11 @@
             android:icon="@drawable/ic_delete"
             android:summary="@string/summary_delete_cache" />
 
+        <Preference
+            android:key="delete_whitelist_key"
+            android:title="@string/menu_delete_whitelist"
+            android:icon="@drawable/ic_delete"
+            android:summary="@string/summary_delete_whitelist" />
+
     </PreferenceCategory>
 </PreferenceScreen>

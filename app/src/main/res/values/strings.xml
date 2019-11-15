@@ -42,6 +42,7 @@
 
     <string name="message_warning_delete_history">This action will delete local file with scanned tags for a day. Proceed?</string>
     <string name="message_warning_delete_temp">This action will delete local file with unsent tags saved offline. Proceed?</string>
+    <string name="message_warning_delete_whitelist">This action will delete local file with acceptable tags. Until next file update scanning tags will be impossible. Proceed?</string>
     <string name="message_warning_delete_file">This action will delete local file. Proceed?</string>
     <string name="message_empty_branch">No branch selected. To continue working with app you need select branch.</string>
     <string name="message_url_error">URL is null. Check preferences, especially branch id.</string>
@@ -56,6 +57,7 @@
     <string name="label_other_settings">Other settings</string>
     <string name="menu_delete_cache">Delete cache file</string>
     <string name="menu_delete_history">Delete history file</string>
+    <string name="menu_delete_whitelist">Delete white-list file</string>
     <string name="label_delete_network">Delete network settings</string>
     <string name="label_personal_settings">Personal information</string>
     <string name="label_responsible_phone">Work phone number</string>
@@ -70,6 +72,7 @@
     <string name="summary_delete_cache">Delete file with unsent tags</string>
     <string name="summary_delete_history">Delete file with local saved tags</string>
     <string name="summary_delete_network">Delete file with network settings</string>
+    <string name="summary_delete_whitelist">Delete file with acceptable tags</string>
     <string name="summary_branch_name">Displayed name of organization</string>
     <string name="summary_responsible_phone">Displayed phone number of responsible person</string>
 
@@ -84,14 +87,15 @@
     <string name="pref_key_net_history">network_history_key</string>
     <string name="pref_key_delete_history">delete_history_key</string>
     <string name="pref_key_delete_cache">delete_cache_key</string>
+    <string name="pref_key_delete_whitelist">delete_whitelist_key</string>
 
     <string name="pref_value_branch_name">ZTTA</string>
     <string name="pref_value_branch_phone">+996(559)006018</string>
     <string name="pref_value_net_protocol">http</string>
     <string name="pref_value_net_address">points.temirtulpar.com</string>
     <string name="pref_value_net_port">80</string>
-    <string name="pref_value_net_whitelist">app/add</string>
-    <string name="pref_value_net_add_new">app/tags?br=</string>
+    <string name="pref_value_net_whitelist">app/tags?br=</string>
+    <string name="pref_value_net_add_new">app/add</string>
     <string name="pref_value_net_history">app/events?st=&amp;et=&amp;br=</string>
 
     <string name="file_whitelist">whitelist.txt</string>
@@ -112,5 +116,10 @@
     <string name="toast_empty_fields">Empty fields are not allowed</string>
     <string name="toast_empty_branch">Branch is empty! Restart app and try again</string>
     <string name="toast_current_branch">Current branch is: </string>
+
+    <string name="json_key_tags">tags</string>
+    <string name="json_key_branch">branch</string>
+    <string name="json_key_network">network</string>
+    <string name="json_key_events">events</string>
 
 </resources>

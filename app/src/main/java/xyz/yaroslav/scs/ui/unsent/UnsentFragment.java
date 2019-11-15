@@ -8,48 +8,43 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.concurrent.ExecutionException;
 
 import xyz.yaroslav.scs.R;
 import xyz.yaroslav.scs.TagAdapter;
 import xyz.yaroslav.scs.TagItem;
-import xyz.yaroslav.scs.ui.history.HistoryParseAsync;
 import xyz.yaroslav.scs.util.Utilities;
 
 public class UnsentFragment extends Fragment {
     private TagAdapter tagAdapter;
     private RecyclerView recyclerView;
     private ProgressBar progressBar;
+    private RecyclerView.ItemDecoration decoration;
 
     private List<TagItem> unsentTags;
-    private static final String TOP_KEY = "events";
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_unsent, container, false);
 
         unsentTags = new ArrayList<>();
         progressBar = root.findViewById(R.id.unsent_progressbar);
+        decoration = new DividerItemDecoration(root.getContext(), DividerItemDecoration.VERTICAL);
         recyclerView = root.findViewById(R.id.unsent_tags);
+        recyclerView.addItemDecoration(decoration);
 
         new ShowTempAsync().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 
@@ -113,7 +108,6 @@ public class UnsentFragment extends Fragment {
             RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
             recyclerView.setLayoutManager(layoutManager);
             recyclerView.setItemAnimator(new DefaultItemAnimator());
-            recyclerView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
             recyclerView.setAdapter(tagAdapter);
             progressBar.setVisibility(View.INVISIBLE);
         }, 200);
