@@ -41,7 +41,6 @@ public class TagAdapter extends RecyclerView.Adapter<TagAdapter.ViewHolder> {
         return tagItems.size();
     }
 
-
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView tagTitle, tagTime;
 

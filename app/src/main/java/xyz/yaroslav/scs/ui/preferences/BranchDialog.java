@@ -30,7 +30,7 @@ public class BranchDialog extends DialogFragment {
         try {
             mCallback = (ISelectedBranch) context;
         } catch (ClassCastException e) {
-            Log.e("EXCEPTION", "Exception: " + e.getMessage());
+            Log.e("ON_BRANCH_DIALOG_ATTACH", "Exception: " + e.getMessage());
         }
     }
 
@@ -69,7 +69,7 @@ public class BranchDialog extends DialogFragment {
                     selected = true;
                     break;
                 default:
-                    Toast.makeText(getContext(), "You must select branch to continue", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), getString(R.string.toast_branch_not_selected), Toast.LENGTH_SHORT).show();
             }
             if (selected) {
                 mCallback.onSelectedBranch(branch_id);

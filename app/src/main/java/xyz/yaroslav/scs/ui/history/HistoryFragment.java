@@ -119,7 +119,7 @@ public class HistoryFragment extends Fragment {
                 getTagsFromServer(url);
             } else {
                 progressBar.setVisibility(View.INVISIBLE);
-                Toast.makeText(getContext(), "Cancelled by user", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), getString(R.string.toast_cancelled_by_user), Toast.LENGTH_SHORT).show();
             }
         }
     }
@@ -157,12 +157,12 @@ public class HistoryFragment extends Fragment {
                     Log.e("SHOW_TAGS", "Exception: " + e.getMessage());
                     progressBar.setVisibility(View.INVISIBLE);
                     showError();
-                    Toast.makeText(getContext(), "Empty result", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), getString(R.string.toast_empty_result), Toast.LENGTH_SHORT).show();
                 }
             } else {
                 progressBar.setVisibility(View.INVISIBLE);
                 showError();
-                Toast.makeText(getContext(), "Empty result", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), getString(R.string.toast_empty_result), Toast.LENGTH_SHORT).show();
             }
         }, 100);
     }
@@ -178,11 +178,11 @@ public class HistoryFragment extends Fragment {
                         displayTags(tagItemList);
                     } else {
                         showError();
-                        Toast.makeText(getContext(), "Empty result", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), getString(R.string.toast_empty_result), Toast.LENGTH_SHORT).show();
                     }
                 } else {
                     showError();
-                    Toast.makeText(getContext(), "Empty result", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), getString(R.string.toast_empty_result), Toast.LENGTH_SHORT).show();
                 }
             } catch (ExecutionException | InterruptedException e) {
                 Log.e("DISPLAY_TAGS", "Exception: " + e.getMessage());
@@ -232,7 +232,6 @@ public class HistoryFragment extends Fragment {
                 outputStreamWriter.write(value);
                 outputStreamWriter.close();
             }
-            Log.i("HISTORY_FILE", "Updated");
         }
         catch (IOException e) {
             Log.e("Exception", "History file write failed: " + e.toString());

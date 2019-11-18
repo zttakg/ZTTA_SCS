@@ -183,7 +183,6 @@ public class MainActivity extends AppCompatActivity implements ISelectedBranch {
                 sendHandler.post(() -> {
                     if (isWiFiResponsible()) {
                         new SendSavedTags().tryToSendTags(getApplicationContext());
-                        Log.i("SEND_SAVED_TAGS", "Tried to save tags...");
                     }
                 });
             }

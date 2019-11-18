@@ -122,16 +122,12 @@ public class HomeFragment extends Fragment {
         protected void onPostExecute(Map pair) {
             if (pair.containsKey(1)) {
                 new Utilities().autoCloseDialog(getContext(), pair.get(1).toString(), getString(R.string.message_success), 1);
-                //autoCloseDialog(pair.get(1).toString(), getString(R.string.message_success), 1);
             } else if (pair.containsKey(2)) {
                 new Utilities().autoCloseDialog(getContext(), getString(R.string.label_unknown_tag), getString(R.string.message_unknown_tag), 3);
-                //autoCloseDialog(getString(R.string.label_unknown_tag), getString(R.string.message_unknown_tag), 3);
             } else if (pair.containsKey(3)) {
                 new Utilities().autoCloseDialog(getContext(), getString(R.string.label_compare_error), getString(R.string.message_white_list), 2);
-                //autoCloseDialog(getString(R.string.label_compare_error), getString(R.string.message_white_list), 2);
             } else {
                 new Utilities().autoCloseDialog(getContext(), getString(R.string.label_error), getString(R.string.message_fail), 2);
-                //autoCloseDialog(getString(R.string.label_error), getString(R.string.message_fail), 2);
             }
         }
     }
@@ -298,7 +294,6 @@ public class HomeFragment extends Fragment {
             assert jsonObject != null;
             outputStreamWriter.write(jsonObject.toString() + ";");
             outputStreamWriter.close();
-            Log.i("WRITE_TEMP", jsonObject.toString());
         } catch (IOException ex) {
             Log.e("Exception", "File write failed: " + ex.toString());
         }

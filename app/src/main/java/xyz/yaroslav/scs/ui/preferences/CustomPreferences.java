@@ -1,6 +1,5 @@
 package xyz.yaroslav.scs.ui.preferences;
 
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -57,20 +56,20 @@ public class CustomPreferences extends PreferenceFragmentCompat {
         if (value != -1) {
             switch (value) {
                 case 0:
-                    Toast.makeText(getContext(), value + " : ZTTA", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), value + " : " + getString(R.string.branch_zavod), Toast.LENGTH_SHORT).show();
                     break;
                 case 1:
-                    Toast.makeText(getContext(), value + " : PM", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), value + " : "  + getString(R.string.branch_pm), Toast.LENGTH_SHORT).show();
                     break;
                 case 2:
-                    Toast.makeText(getContext(), value + " : Tire Company", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), value + " : "  + getString(R.string.branch_tires), Toast.LENGTH_SHORT).show();
                     break;
                 default:
-                    Toast.makeText(getContext(), "Unknown id: " + value, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), getString(R.string.branch_unknown) + " : " + value, Toast.LENGTH_SHORT).show();
                     break;
             }
         } else {
-            Toast.makeText(getContext(), "Branch is empty. Restart app and set branch again", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), getString(R.string.toast_empty_branch), Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -90,7 +89,7 @@ public class CustomPreferences extends PreferenceFragmentCompat {
         builder.setPositiveButton(getString(R.string.label_ok), (dialog, which) -> {
             Objects.requireNonNull(getContext()).deleteFile(file_name);
             dialog.dismiss();
-            Toast.makeText(getContext(), "File deleted", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), getString(R.string.message_file_deleted), Toast.LENGTH_SHORT).show();
         });
 
         builder.setNegativeButton(getString(R.string.label_cancel), (dialog, which) -> dialog.dismiss());

@@ -19,7 +19,6 @@ import androidx.fragment.app.DialogFragment;
 
 import java.util.Calendar;
 import java.util.Date;
-import java.util.Objects;
 
 import xyz.yaroslav.scs.R;
 

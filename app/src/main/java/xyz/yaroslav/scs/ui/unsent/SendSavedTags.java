@@ -19,7 +19,6 @@ public class SendSavedTags {
     private ArrayList<String> retrieveTags(Context context) {
         Utilities util = new Utilities();
         String tmp = util.readFromFile(context, context.getString(R.string.file_cache));
-        Log.i("RETRIEVED", "" + tmp);
         if (!tmp.equals("") && tmp.length() > 0) {
             String[] arr = tmp.split(";");
             ArrayList<String> list;

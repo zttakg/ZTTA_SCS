@@ -19,8 +19,8 @@
 
         <Preference
             android:key="branch_id_key"
-            android:title="Branch ID"
-            android:summary="Selected branch unique id"
+            android:title="@string/label_branch_id_title"
+            android:summary="@string/summary_branch_id"
             android:defaultValue="-1"/>
 
     </PreferenceCategory>

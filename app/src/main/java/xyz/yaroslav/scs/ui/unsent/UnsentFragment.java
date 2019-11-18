@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -17,12 +18,10 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 import xyz.yaroslav.scs.R;
 import xyz.yaroslav.scs.TagAdapter;
@@ -32,6 +31,7 @@ import xyz.yaroslav.scs.util.Utilities;
 public class UnsentFragment extends Fragment {
     private TagAdapter tagAdapter;
     private RecyclerView recyclerView;
+    private LinearLayout statusImageHolder;
     private ProgressBar progressBar;
     private RecyclerView.ItemDecoration decoration;
 
@@ -42,62 +42,36 @@ public class UnsentFragment extends Fragment {
 
         unsentTags = new ArrayList<>();
         progressBar = root.findViewById(R.id.unsent_progressbar);
+        statusImageHolder = root.findViewById(R.id.statusImageHolder);
         decoration = new DividerItemDecoration(root.getContext(), DividerItemDecoration.VERTICAL);
         recyclerView = root.findViewById(R.id.unsent_tags);
         recyclerView.addItemDecoration(decoration);
 
-        new ShowTempAsync().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+        getUnsentTags();
 
         return root;
     }
 
-    private class ShowTempAsync extends AsyncTask<Void, Void, Integer> {
-        @Override
-        protected Integer doInBackground(Void... voids) {
-            String tmp = new Utilities().readFromFile(getContext(), getString(R.string.file_cache));
-            if (!tmp.equals("")) {
-                String[] arr = tmp.split(";");
-                if (arr.length > 0) {
-                    unsentTags.clear();
-                    for (String value : arr) {
-                        try {
-                            String tagName;
-                            String tagTime;
-                            String tagUid;
-
-                            JSONObject jsonObject = new JSONObject(value);
-                            tagName = jsonObject.getString("tag_data");
-                            tagTime = jsonObject.getString("tag_time");
-                            tagUid = jsonObject.getString("tag_id");
-                            TagItem tagItem = new TagItem(tagUid, tagName, tagTime);
-
-                            unsentTags.add(tagItem);
-                        } catch (JSONException e) {
-                            Log.e("TEMP_FILE", "JSON Exception in " + "(" + e.getClass() + "): " + e.getMessage());
-                        }
+    private void getUnsentTags() {
+        Handler handler = new Handler();
+        handler.postDelayed(() -> {
+            String raw = new Utilities().readFromFile(getContext(), getString(R.string.file_cache));
+            if (raw != null && !raw.isEmpty()) {
+                try {
+                    unsentTags = new UnsentParseAsync().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, raw).get();
+                    if (unsentTags != null) {
+                        hideInfoImage();
+                        displayTags(unsentTags);
+                    } else {
+                        Toast.makeText(getContext(), getString(R.string.toast_msg_empty_temp), Toast.LENGTH_SHORT).show();
                     }
-                    if (!unsentTags.isEmpty()) {
-                        return 0;
-                    }
+                } catch (InterruptedException | ExecutionException e) {
+                    Log.e("GET_UNSENT_TAGS", "Exception: " + e.getMessage());
                 }
-            }
-            return 1;
-        }
-
-        @Override
-        protected void onPreExecute() {
-            progressBar.setVisibility(View.VISIBLE);
-        }
-
-        @Override
-        protected void onPostExecute(Integer flag) {
-            if (flag == 0) {
-                displayTags(unsentTags);
             } else {
-                Toast.makeText(getContext(), getString(R.string.toast_msg_empty_temp), Toast.LENGTH_SHORT).show();
-                progressBar.setVisibility(View.INVISIBLE);
+                showInfoImage();
             }
-        }
+        }, 100);
     }
 
     private void displayTags(List<TagItem> list) {
@@ -111,5 +85,21 @@ public class UnsentFragment extends Fragment {
             recyclerView.setAdapter(tagAdapter);
             progressBar.setVisibility(View.INVISIBLE);
         }, 200);
+    }
+
+    private void showInfoImage() {
+        if (recyclerView.getVisibility() == View.VISIBLE) {
+            recyclerView.setVisibility(View.INVISIBLE);
+        }
+        statusImageHolder.setVisibility(View.VISIBLE);
+    }
+
+    private void hideInfoImage() {
+        if (recyclerView.getVisibility() == View.INVISIBLE) {
+            recyclerView.setVisibility(View.VISIBLE);
+        }
+        if (statusImageHolder.getVisibility() == View.VISIBLE) {
+            statusImageHolder.setVisibility(View.GONE);
+        }
     }
 }
