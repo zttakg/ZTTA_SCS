@@ -121,5 +121,8 @@
     <string name="json_key_branch">branch</string>
     <string name="json_key_network">network</string>
     <string name="json_key_events">events</string>
+    <string name="json_key_tag_time">tag_time</string>
+    <string name="json_key_tag_data">tag_data</string>
+    <string name="json_key_tag_id">tag_id</string>
 
 </resources>

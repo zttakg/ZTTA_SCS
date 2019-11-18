@@ -86,7 +86,7 @@ public class Utilities {
         return "";
     }
 
-    public boolean writeToFile(Context context, String file_name, String data) {
+    public void writeToFile(Context context, String file_name, String data) {
         File file = new File(file_name);
         if (file.exists() && data.equals(readFromFile(context, file_name))) {
             Log.i("WRITE_FILE", "Whitelist is actual. Skip re-writing");
@@ -95,12 +95,20 @@ public class Utilities {
                 OutputStreamWriter outputStreamWriter = new OutputStreamWriter(context.openFileOutput(file_name, Context.MODE_PRIVATE));
                 outputStreamWriter.write(data);
                 outputStreamWriter.close();
-                return true;
             } catch (IOException e) {
                 Log.e("WRITE_FILE", "IO Exception: " + e.toString());
             }
         }
-        return false;
+    }
+
+    public void clearFile(Context context, String file_name) {
+        try {
+            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(context.openFileOutput(file_name, Context.MODE_PRIVATE));
+            outputStreamWriter.write("");
+            outputStreamWriter.close();
+        } catch (IOException e) {
+            Log.e("WRITE_FILE", "IO Exception: " + e.toString());
+        }
     }
 
     public String buildUrl(Context context, int type, @Nullable long... range) {

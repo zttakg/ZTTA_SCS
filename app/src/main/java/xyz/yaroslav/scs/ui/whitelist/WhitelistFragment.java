@@ -53,7 +53,6 @@ public class WhitelistFragment extends Fragment {
         decoration = new DividerItemDecoration(root.getContext(), DividerItemDecoration.VERTICAL);
         recyclerView.addItemDecoration(decoration);
 
-
         parseTags();
 
         return root;

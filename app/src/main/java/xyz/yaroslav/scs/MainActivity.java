@@ -21,11 +21,8 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 
 import android.os.Handler;
-import android.os.HandlerThread;
-import android.os.Message;
 import android.util.Log;
 
-import androidx.annotation.NonNull;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -52,9 +49,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -185,16 +180,12 @@ public class MainActivity extends AppCompatActivity implements ISelectedBranch {
         delayTimer.schedule(new TimerTask() {
             @Override
             public void run() {
-                try {
-                    sendHandler.post(() -> {
-                        if (isWiFiResponsible()) {
-                            new SendSavedTags().tryToSendTags(getApplicationContext());
-                            Log.i("SEND_SAVED_TAGS", "Tried to save tags...");
-                        }
-                    });
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+                sendHandler.post(() -> {
+                    if (isWiFiResponsible()) {
+                        new SendSavedTags().tryToSendTags(getApplicationContext());
+                        Log.i("SEND_SAVED_TAGS", "Tried to save tags...");
+                    }
+                });
             }
         }, 0L, 60L * 1000);
     }
