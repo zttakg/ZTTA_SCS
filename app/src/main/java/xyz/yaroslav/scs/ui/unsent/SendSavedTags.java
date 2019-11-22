@@ -61,7 +61,7 @@ public class SendSavedTags {
             if (values.size() > 0) {
                 for (String value : values) {
                     OutputStreamWriter outputStreamWriter = new OutputStreamWriter(context.openFileOutput(context.getString(R.string.file_cache), Context.MODE_APPEND));
-                    outputStreamWriter.write(value);
+                    outputStreamWriter.write(value + ";");
                     outputStreamWriter.close();
                 }
             } else {

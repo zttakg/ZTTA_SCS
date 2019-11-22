@@ -8,6 +8,9 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.preference.PreferenceManager;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -141,6 +144,19 @@ public class Utilities {
         return "";
     }
 
+    public JSONObject buidJsonObject(String uid, String payload, String time, int branch_id) {
+        try {
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("tag_id", uid);
+            jsonObject.put("tag_data", payload);
+            jsonObject.put("tag_time", time);
+            jsonObject.put("br", branch_id);
+            return jsonObject;
+        } catch (JSONException e) {
+            Log.e("BUILD_JSON", "JSON Exception: " + e.getMessage());
+        }
+        return null;
+    }
 }
 
 

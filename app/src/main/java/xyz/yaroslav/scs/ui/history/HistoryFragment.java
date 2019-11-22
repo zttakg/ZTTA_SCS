@@ -151,7 +151,9 @@ public class HistoryFragment extends Fragment {
                     if (tagFromFileList != null) {
                         displayTags(tagFromFileList);
                     } else {
-                        getTagsFromServer(new Utilities().buildUrl(getContext(), 2));
+                        String url = new Utilities().buildUrl(getContext(), 2, null);
+                        Log.i("BUILDED_URL", url);
+                        getTagsFromServer(url);
                     }
                 } catch (ExecutionException | InterruptedException e) {
                     Log.e("SHOW_TAGS", "Exception: " + e.getMessage());
@@ -160,9 +162,8 @@ public class HistoryFragment extends Fragment {
                     Toast.makeText(getContext(), getString(R.string.toast_empty_result), Toast.LENGTH_SHORT).show();
                 }
             } else {
-                progressBar.setVisibility(View.INVISIBLE);
-                showError();
-                Toast.makeText(getContext(), getString(R.string.toast_empty_result), Toast.LENGTH_SHORT).show();
+                String url = new Utilities().buildUrl(getContext(), 2, null);
+                getTagsFromServer(url);
             }
         }, 100);
     }
